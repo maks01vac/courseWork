@@ -1,9 +1,13 @@
 import React from 'react'
+import Calc from '../calc/Calc.jsx'
 
-export default function Main({children}) {
+const Main = ({children}) => {
   return (
     <div>
-      {children}
-      </div>
-  )
-}
+    {children}
+    <Calc/>
+    </div>
+  );
+};
+
+export default Main;
