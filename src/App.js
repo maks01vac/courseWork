@@ -8,6 +8,8 @@ import Calc from './components/calc/Calc.jsx'
 function App() {
   return (
     <div className="App">
+      <Header/>
+      <Main/>
     </div>
   );
 }
