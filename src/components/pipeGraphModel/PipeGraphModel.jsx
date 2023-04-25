@@ -1,14 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 import cytoscape from 'cytoscape';
-import cyContextMenu from 'cytoscape-context-menus';
+import contextMenus from 'cytoscape-context-menus';
 import 'cytoscape-context-menus/cytoscape-context-menus.css';
 import './style/PipeGraphModel.css';
+import separatePointsByConnections from './separatePointsByConnections';
+import getStartAndEndIdNodes from './getStartAndEndIdNodes';
 
 const PipeGraphModel = () => {
+  const nodesAndLinkInfo = {
+    allNodes:[],
+    singleConnectionNodes:[],
+    multiConnectionNodes:[],
+    linksInfo:[]
+  }
+
+  const [pipeModelInfo, setPipeModelInfo] = useState(nodesAndLinkInfo)
+  const dataGraph = useRef(nodesAndLinkInfo)
+
+
   const nameNodeRef = useRef(1);
   const cyRef = useRef(null);
-  const degreeNodes =useRef([]);
+
+
   useEffect(() => {
+    cytoscape.use(contextMenus);
     const cy = cytoscape({
       container: cyRef.current,
       elements: [],
@@ -16,15 +31,15 @@ const PipeGraphModel = () => {
         {
           selector: 'node',
           style: {
-            'background-color': '#666',
+            'background-color': 'black',
             label: 'data(name)',
           },
         },
         {
           selector: 'edge',
           style: {
-            width: 3,
-            'line-color': '#ccc',
+            width: 10,
+            'line-color': 'gray',
             'target-arrow-color': '#ccc',
             'target-arrow-shape': 'triangle',
           },
@@ -36,8 +51,6 @@ const PipeGraphModel = () => {
       zoomingEnabled: false,
     });
 
-    
-    cyContextMenu(cytoscape, cy);
 
     cy.on('tap', (event) => {
       if (event.target === cy) {
@@ -49,34 +62,22 @@ const PipeGraphModel = () => {
         };
         cy.add(node);
         nameNodeRef.current += 1;
+        nodesAndLinkInfo.allNodes.push(node)
+        setPipeModelInfo(nodesAndLinkInfo)
+      }})
         
-        cy.nodes().forEach((node) => {
-          const connectedEdges = node.connectedEdges();
-        
-          if (connectedEdges.length === 1) {
-            const edge = connectedEdges[0];
-            const source = edge.source();
-            const target = edge.target();
-        
-            const connectedNode = source.id() === node.id() ? target : source;
-        
-            const data = {
-              id: node.id(),
-              name: node.data('name'),
-              connectedNodeId: connectedNode.id(),
-              connectedNodeName: connectedNode.data('name'),
-            };
-        
-            // Добавить данные в массив
-            degreeNodes.current.push(data);
-          }
-        });
-        console.log(degreeNodes.current)
-      }
-    });
-
     cy.on('dblclick', 'edge', function (event) {
       cy.remove(this);
+
+      const idEdge = event.target.id()
+      const [startId, endId] = getStartAndEndIdNodes(idEdge)
+
+      nodesAndLinkInfo.linksInfo = nodesAndLinkInfo.linksInfo.filter(link => link.startId !==startId && link.endId !==endId)
+      const singleOrMultiPointsInfo = separatePointsByConnections(nodesAndLinkInfo.linksInfo);
+      
+      nodesAndLinkInfo.singleConnectionNodes = singleOrMultiPointsInfo.singleConnectionPoints
+      nodesAndLinkInfo.multiConnectionNodes = singleOrMultiPointsInfo.multipleConnectionPoints
+      setPipeModelInfo(nodesAndLinkInfo)
     });
 
     cy.contextMenus({
@@ -88,6 +89,15 @@ const PipeGraphModel = () => {
           onClickFunction: function (event) {
             const node = event.target;
             node.remove();
+
+            const nodeId = node.id()
+            nodesAndLinkInfo.allNodes = nodesAndLinkInfo.allNodes.filter(n => n.data.id != nodeId)
+            nodesAndLinkInfo.linksInfo = nodesAndLinkInfo.linksInfo.filter(link => link.startId != nodeId && link.endId != nodeId)
+            const singleOrMultiPointsInfo = separatePointsByConnections(nodesAndLinkInfo.linksInfo);
+      
+            nodesAndLinkInfo.singleConnectionNodes = singleOrMultiPointsInfo.singleConnectionPoints
+            nodesAndLinkInfo.multiConnectionNodes = singleOrMultiPointsInfo.multipleConnectionPoints
+            setPipeModelInfo(nodesAndLinkInfo)
           },
         },
         {
@@ -97,6 +107,7 @@ const PipeGraphModel = () => {
           onClickFunction: function (event) {
             const sourceNode = event.target;
             cy.one('tap', 'node', function (event) {
+
               const targetNode = event.target;
               const edgeId = `${sourceNode.id()}-${targetNode.id()}`;
               const edge = {
@@ -104,6 +115,20 @@ const PipeGraphModel = () => {
                 data: { id: edgeId, source: sourceNode.id(), target: targetNode.id() },
               };
               cy.add(edge);
+
+              const edgeInfo = {
+                startId:Number(sourceNode.id()),
+                startName:sourceNode.data('name'),
+                endId:Number(targetNode.id()),
+                endName:targetNode.data('name'),
+              }
+              nodesAndLinkInfo.linksInfo.push(edgeInfo);
+              const singleOrMultiPointsInfo = separatePointsByConnections(nodesAndLinkInfo.linksInfo);
+
+              nodesAndLinkInfo.singleConnectionNodes = singleOrMultiPointsInfo.singleConnectionPoints
+              nodesAndLinkInfo.multiConnectionNodes = singleOrMultiPointsInfo.multipleConnectionPoints
+              setPipeModelInfo(nodesAndLinkInfo)
+              
             });
           },
         },
@@ -119,3 +144,4 @@ const PipeGraphModel = () => {
 };
 
 export default PipeGraphModel;
+

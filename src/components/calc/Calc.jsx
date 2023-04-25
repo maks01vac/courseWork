@@ -4,11 +4,14 @@ import PipeGraphModel from '../pipeGraphModel/PipeGraphModel';
 import './style/Calc.css';
 
 const Calc = () => {
+
+
+
     return (
         <div className="Calc">
             <FormPipeParam />
             <div className="GraphModelBox">
-                <PipeGraphModel />
+                <PipeGraphModel  />
             </div>
         </div>
     );
