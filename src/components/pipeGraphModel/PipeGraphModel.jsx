@@ -6,18 +6,8 @@ import './style/PipeGraphModel.css';
 import separatePointsByConnections from './separatePointsByConnections';
 import getStartAndEndIdNodes from './getStartAndEndIdNodes';
 
-const PipeGraphModel = () => {
-  const nodesAndLinkInfo = {
-    allNodes:[],
-    singleConnectionNodes:[],
-    multiConnectionNodes:[],
-    linksInfo:[]
-  }
-
-  const [pipeModelInfo, setPipeModelInfo] = useState(nodesAndLinkInfo)
-  const dataGraph = useRef(nodesAndLinkInfo)
-
-
+const PipeGraphModel = ({pipeModelInfo,setPipeModelInfo}) => {
+  const nodesAndLinkInfo = pipeModelInfo
   const nameNodeRef = useRef(1);
   const cyRef = useRef(null);
 
@@ -60,11 +50,19 @@ const PipeGraphModel = () => {
           data: { id: ident, name: nameNodeRef.current },
           position: { x: event.position.x, y: event.position.y },
         };
+
         cy.add(node);
         nameNodeRef.current += 1;
-        nodesAndLinkInfo.allNodes.push(node)
-        setPipeModelInfo(nodesAndLinkInfo)
-      }})
+
+        setPipeModelInfo((prev) => {
+          const newNodesAndLinkInfo = {
+            ...prev,
+            allNodes: [...prev.allNodes, node],
+          };
+          return newNodesAndLinkInfo;
+        });
+      }
+      })
         
     cy.on('dblclick', 'edge', function (event) {
       cy.remove(this);
@@ -72,12 +70,19 @@ const PipeGraphModel = () => {
       const idEdge = event.target.id()
       const [startId, endId] = getStartAndEndIdNodes(idEdge)
 
-      nodesAndLinkInfo.linksInfo = nodesAndLinkInfo.linksInfo.filter(link => link.startId !==startId && link.endId !==endId)
-      const singleOrMultiPointsInfo = separatePointsByConnections(nodesAndLinkInfo.linksInfo);
-      
-      nodesAndLinkInfo.singleConnectionNodes = singleOrMultiPointsInfo.singleConnectionPoints
-      nodesAndLinkInfo.multiConnectionNodes = singleOrMultiPointsInfo.multipleConnectionPoints
-      setPipeModelInfo(nodesAndLinkInfo)
+      setPipeModelInfo((prev) => {
+        const newNodesAndLinkInfo = {
+          ...prev,
+          linksInfo: prev.linksInfo.filter(link => link.startId !== startId && link.endId !== endId),
+        };
+        
+        const singleOrMultiPointsInfo = separatePointsByConnections(newNodesAndLinkInfo.linksInfo);
+    
+        newNodesAndLinkInfo.singleConnectionNodes = singleOrMultiPointsInfo.singleConnectionPoints;
+        newNodesAndLinkInfo.multiConnectionNodes = singleOrMultiPointsInfo.multipleConnectionPoints;
+    
+        return newNodesAndLinkInfo;
+      });
     });
 
     cy.contextMenus({
@@ -91,13 +96,19 @@ const PipeGraphModel = () => {
             node.remove();
 
             const nodeId = node.id()
-            nodesAndLinkInfo.allNodes = nodesAndLinkInfo.allNodes.filter(n => n.data.id != nodeId)
-            nodesAndLinkInfo.linksInfo = nodesAndLinkInfo.linksInfo.filter(link => link.startId != nodeId && link.endId != nodeId)
-            const singleOrMultiPointsInfo = separatePointsByConnections(nodesAndLinkInfo.linksInfo);
-      
-            nodesAndLinkInfo.singleConnectionNodes = singleOrMultiPointsInfo.singleConnectionPoints
-            nodesAndLinkInfo.multiConnectionNodes = singleOrMultiPointsInfo.multipleConnectionPoints
-            setPipeModelInfo(nodesAndLinkInfo)
+            setPipeModelInfo((prev) => {
+              const newNodesAndLinkInfo = {
+                ...prev,
+                allNodes: prev.allNodes.filter((n) => n.data.id !== nodeId),
+                linksInfo: prev.linksInfo.filter(
+                  (link) => link.startId != nodeId && link.endId != nodeId
+                ),
+              };
+              const singleOrMultiPointsInfo = separatePointsByConnections(newNodesAndLinkInfo.linksInfo);
+              newNodesAndLinkInfo.singleConnectionNodes = singleOrMultiPointsInfo.singleConnectionPoints;
+              newNodesAndLinkInfo.multiConnectionNodes = singleOrMultiPointsInfo.multipleConnectionPoints;
+              return newNodesAndLinkInfo;
+            });
           },
         },
         {
@@ -122,13 +133,16 @@ const PipeGraphModel = () => {
                 endId:Number(targetNode.id()),
                 endName:targetNode.data('name'),
               }
-              nodesAndLinkInfo.linksInfo.push(edgeInfo);
-              const singleOrMultiPointsInfo = separatePointsByConnections(nodesAndLinkInfo.linksInfo);
-
-              nodesAndLinkInfo.singleConnectionNodes = singleOrMultiPointsInfo.singleConnectionPoints
-              nodesAndLinkInfo.multiConnectionNodes = singleOrMultiPointsInfo.multipleConnectionPoints
-              setPipeModelInfo(nodesAndLinkInfo)
-              
+              setPipeModelInfo((prev) => {
+                const newNodesAndLinkInfo = {
+                  ...prev,
+                  linksInfo: [...prev.linksInfo, edgeInfo],
+                };
+                const singleOrMultiPointsInfo = separatePointsByConnections(newNodesAndLinkInfo.linksInfo);
+                newNodesAndLinkInfo.singleConnectionNodes = singleOrMultiPointsInfo.singleConnectionPoints;
+                newNodesAndLinkInfo.multiConnectionNodes = singleOrMultiPointsInfo.multipleConnectionPoints;
+                return newNodesAndLinkInfo;
+              });
             });
           },
         },

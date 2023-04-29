@@ -1,8 +1,8 @@
 import React from 'react';
-
+import './styles/Fotter.css'
 const Fotter = () => {
     return (
-        <div>
+        <div className="fotter">
             
         </div>
     );
