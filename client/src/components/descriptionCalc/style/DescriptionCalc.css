@@ -1,0 +1,14 @@
+.description{
+    margin: 10px;
+    padding: 10px;
+    background:#ffffff;
+    font-size: 14px;
+
+}
+
+.attention{
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 2px solid red;
+    display: inline;
+}

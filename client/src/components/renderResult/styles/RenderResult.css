@@ -1,0 +1,37 @@
+.result{
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid #9f9f9f;
+    background-color: #fff;
+    border-radius:5px;
+    box-shadow:2px 2px rgb(66, 66, 66);
+}
+.resultBox{
+    padding: 10px;
+}
+
+.renderResult{
+    
+    display: flex;
+    align-items: center;
+    height: 200px;
+    
+    justify-content: flex-start
+}
+.resultElement{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.renderElement ul{
+    
+    line-height: 1.5;
+    font-family: Arial, sans-serif;
+}
+.renderElement ul li{
+    border-bottom: 1px solid #ccc;
+    list-style-type: none;
+    padding: 10px 20px;
+}

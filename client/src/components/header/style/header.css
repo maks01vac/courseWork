@@ -1,0 +1,49 @@
+header{
+    width: 100%;
+    margin: 0;
+    background-color: rgb(255, 255, 255); /* Задаем цвет фона шапки */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавляем тень */
+
+    
+}
+/* .header{
+    margin: 0 auto;
+    width: 1440px;    
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    padding: 0 20px;   
+    height: 80px; 
+} */
+
+.header {
+    margin: 0 auto;
+    width: 1440px;
+    height: 80px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    box-sizing: border-box;
+    padding: 0 20px; 
+  }
+  .logo img {
+    max-width: 25%;
+    margin-right: 8px;
+  }
+
+.navbar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar a {
+    color: #333;
+    text-decoration: none;
+    margin-right: 1rem;
+  }
+  
+  .navbar a:hover {
+    text-decoration: underline;
+  }
