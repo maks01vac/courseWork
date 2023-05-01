@@ -1,9 +1,11 @@
 .Calc{
-    background:#797575;    
+    background: #4682b4;;    
     max-width:100%;
     border-radius:5px;
     box-sizing: border-box;
     padding: 10px;
+    border: 2px solid #9f9f9f;
+    box-shadow:2px 2px rgb(66, 66, 66);
     
 }
 

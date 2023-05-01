@@ -9,9 +9,7 @@ const LinksDataFormCollections = ({links, handleLinkInfoChange}) => {
 
     return (
         <div>
-            <hr/>
           <h3>Соединения</h3>
-          <hr/>
              {links.map((link, index) => (
             <LinksDataForm
               key={`${link.startId}-${link.endId}`}

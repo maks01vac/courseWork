@@ -11,11 +11,9 @@
 }
 
 .renderResult{
-    
     display: flex;
     align-items: center;
-    height: 200px;
-    
+    height: 150px;
     justify-content: flex-start
 }
 .resultElement{
@@ -25,13 +23,19 @@
     align-items: center;
 }
 
-.renderElement ul{
-    
-    line-height: 1.5;
-    font-family: Arial, sans-serif;
-}
-.renderElement ul li{
-    border-bottom: 1px solid #ccc;
+.resultElement ul {
     list-style-type: none;
-    padding: 10px 20px;
+    padding: 0;
+    font-size: 15px;
+}
+
+.resultElement ul li {
+    margin-bottom: 10px;
+}
+
+.resultElement ul li::before {
+    content: "•";
+    display: inline-block;
+    width: 10px;
+    margin-right: 10px;
 }

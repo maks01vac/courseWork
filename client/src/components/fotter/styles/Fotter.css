@@ -11,7 +11,7 @@ footer{
     margin-top: 10px;
 }
 .fotter {
-    width: 1440px;
+    max-width: 1440px;
     margin: 0 auto;
     
     min-height: 150px;
@@ -21,12 +21,12 @@ footer{
     padding: 1rem 2rem;
 
     color: #fff;
-    font-family: Arial, sans-serif;
     font-size: 14px;
     box-sizing: border-box;
   }
   
   .fotter a {
+    font-family: inherit;
     color: #fff;
     text-decoration: none;
     margin-right: 1rem;

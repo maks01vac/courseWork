@@ -10,9 +10,7 @@ const SingleConnectionsNodeFormCollections = ({ singleConnectionNodes, handleSin
 
     return (
         <div>
-            <hr />
-            <h3>Узлы с одним соединением:</h3>
-            <hr />
+            <h3>Концевые узлы</h3>
             {singleConnectionNodes.map((node, index) => (
                 <SingleConnectionsNodeForm
                     key={node.id}

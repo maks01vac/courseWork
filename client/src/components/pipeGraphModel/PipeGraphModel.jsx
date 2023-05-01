@@ -21,15 +21,16 @@ const PipeGraphModel = ({pipeModelInfo,setPipeModelInfo}) => {
         {
           selector: 'node',
           style: {
-            'background-color': 'black',
+            'background-color': '#003366',
             label: 'data(name)',
+            shape:'roundrectangle',
           },
         },
         {
           selector: 'edge',
           style: {
             width: 10,
-            'line-color': 'gray',
+            'line-color': '#b0c4de',
             'target-arrow-color': '#ccc',
             'target-arrow-shape': 'triangle',
           },

@@ -69,34 +69,3 @@ app.use('', dataRoute);
 app.listen(port, () => {
   console.log(`Сервер запущен на порту ${port}`);
 });  
-
-
-
-
-// Валидация данных
-//   if (!graphData) {
-//     res.status(400).send('Некорректные данные');
-//     return;
-//   }
-
-//   // Запускаем Python-скрипт с передачей данных через аргументы
-//   const pythonProcess = spawn('python', ['./python_script.py', JSON.stringify(graphData)]);
-
-//   // Получаем результат из stdout
-//   pythonProcess.stdout.on('data', (data) => {
-//     const result = JSON.parse(data.toString());
-
-//     // Отправляем результат обратно клиенту
-//     res.status(200).json(result);
-//   });
-
-//   // Обрабатываем ошибки
-//   pythonProcess.stderr.on('data', (error) => {
-//     console.error(`Python error: ${error}`);
-//     res.status(500).send('Ошибка сервера');
-//   });
-
-//   pythonProcess.on('error', (error) => {
-//     console.error(`Ошибка запуска Python-скрипта: ${error}`);
-//     res.status(500).send('Ошибка сервера');
-//   });

@@ -18,18 +18,17 @@ header{
 
 .header {
     margin: 0 auto;
-    width: 1440px;
+    max-width: 1440px;
     height: 80px; 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family: Arial, sans-serif;
     font-size: 14px;
     box-sizing: border-box;
     padding: 0 20px; 
   }
   .logo img {
-    max-width: 25%;
+    max-width: 200px;
     margin-right: 8px;
   }
 
@@ -39,7 +38,7 @@ header{
   }
   
   .navbar a {
-    color: #333;
+    color:inherit;
     text-decoration: none;
     margin-right: 1rem;
   }
