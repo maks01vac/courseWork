@@ -18,20 +18,23 @@ let dataRoute = express.Router()
 
 dataRoute.post('/process-data', async (req, res) => {
   const graphData = req.body;
+  console.log(graphData)
   if (graphData) {
     // Запустите Python-скрипт с помощью модуля 'child_process'
-    const pythonProcess = spawn('./venv/Scripts/python.exe', ['python_scripts/test_programm.py']);
+    const pythonProcess = spawn('./venv/Scripts/python.exe', ['python_scripts/calculationFlowAndPressure.py']);
 
     // Отправьте данные в Python-скрипт через стандартный поток ввода
-    pythonProcess.stdin.write(JSON.stringify(graphData));
+    const jsonData = JSON.stringify(graphData)
+    // console.log(jsonData)
+    pythonProcess.stdin.write(jsonData);
     pythonProcess.stdin.end();
 
-    let result = '';
+    let result = "";
+    
     // Получите данные от Python-скрипта через стандартный поток вывода
     pythonProcess.stdout.on('data', (data) => {
       result += data.toString();
     });
-
     pythonProcess.stderr.on('data', (data) => {
       console.error(`Python stderr: ${data}`);
     });
@@ -44,6 +47,7 @@ dataRoute.post('/process-data', async (req, res) => {
       } else {
         try {
           res.status(200).json(JSON.parse(result));
+          console.log(JSON.parse(result))
           console.log('запрос прошел успешно');
         } catch (err) {
           console.error(`JSON parsing error: ${err}`);

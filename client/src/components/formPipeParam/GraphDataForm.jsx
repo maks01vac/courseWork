@@ -12,11 +12,10 @@ const GraphDataForm = ({ graphData, setResult }) => {
 
 
   const [formData, setFormData] = useState({
-    GeneralData: {
+    generalData: {
       viscosity: '',
       density: '',
       roughness: '',
-      eps: '',
     },
     singleConnectionNodes: [],
     linksInfo: [],
@@ -33,18 +32,14 @@ const GraphDataForm = ({ graphData, setResult }) => {
       singleConnectionNodes: graphData.singleConnectionNodes.map((node) => ({
         ...node,
         pressure: '',
-        frictionFactor: '',
       })),
       linksInfo: graphData.linksInfo.map((link) => ({
         ...link,
         length: '',
         diameter: '',
-        resistanceFactor: '',
       })),
       multiConnectionNodes: graphData.multiConnectionNodes.map((node) =>({
         ...node,
-        fluidFlow:'',
-        pressure:''
       })),
       allNodes: graphData.allNodes
 
@@ -54,8 +49,8 @@ const GraphDataForm = ({ graphData, setResult }) => {
   const handleGeneralDataChange = (field) => (event) => {
     setFormData({
       ...formData,
-      GeneralData: {
-        ...formData.GeneralData,
+      generalData: {
+        ...formData.generalData,
         [field]: event.target.value,
       },
     });
@@ -78,15 +73,14 @@ const GraphDataForm = ({ graphData, setResult }) => {
   };
 
   const isFormValid = () =>
-    formData.GeneralData.viscosity &&
-    formData.GeneralData.density &&
-    formData.GeneralData.roughness &&
-    formData.GeneralData.eps &&
+    formData.generalData.viscosity &&
+    formData.generalData.density &&
+    formData.generalData.roughness &&
     formData.singleConnectionNodes.every(
-      (node) => node.pressure && node.frictionFactor
+      (node) => node.pressure
     ) &&
     formData.linksInfo.every(
-      (link) => link.length && link.diameter && link.resistanceFactor
+      (link) => link.length && link.diameter
     );
 
   const unconnectedNodes = (graphData) => {
@@ -134,7 +128,7 @@ const GraphDataForm = ({ graphData, setResult }) => {
       <div className={styles.form_container}>
         <div className={styles.form_section}>
           <NetworkDataForm
-            generalData={formData.GeneralData}
+            generalData={formData.generalData}
             handleGeneralDataChange={handleGeneralDataChange}
           />
         </div>

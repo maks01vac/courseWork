@@ -5,7 +5,7 @@ const NetworkDataForm = ({ generalData, handleGeneralDataChange}) => {
       <div>
         <h3>Общие параметры</h3>
         <label>
-          Вязкость:
+          Вязкость(Нс/м²):
           <input
             type="number"
             value={generalData.viscosity}
@@ -13,7 +13,7 @@ const NetworkDataForm = ({ generalData, handleGeneralDataChange}) => {
           />
         </label>
         <label>
-          Плотность:
+          Плотность(kg/m³):
           <input
             type="number"
             value={generalData.density}
@@ -21,19 +21,11 @@ const NetworkDataForm = ({ generalData, handleGeneralDataChange}) => {
           />
         </label>
         <label>
-          Шероховатость:
+          Шероховатость(mm):
           <input
             type="number"
             value={generalData.roughness}
             onChange={handleGeneralDataChange('roughness')}
-          />
-        </label>
-        <label>
-          eps:
-          <input
-            type="number"
-            value={generalData.eps}
-            onChange={handleGeneralDataChange('eps')}
           />
         </label>
       </div>

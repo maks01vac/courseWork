@@ -5,19 +5,11 @@ const SingleConnectionsNodeForm = ({ node, index, handleSingleNodeChange}) => {
       <div>
         <h5>Узел {node.name}</h5>
         <label>
-          Давление:
+          Давление(бары):
           <input
             type="number"
             value={node.pressure}
             onChange={handleSingleNodeChange(index, 'pressure')}
-          />
-        </label>
-        <label>
-          Коэффициент гидравлического трения:
-          <input
-            type="number"
-            value={node.frictionFactor}
-            onChange={handleSingleNodeChange(index, 'frictionFactor')}
           />
         </label>
       </div>

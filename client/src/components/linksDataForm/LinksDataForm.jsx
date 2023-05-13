@@ -1,13 +1,15 @@
 import React from 'react';
 
 const LinksDataForm = ({ link, index, handleLinkInfoChange}) => {
+  
+
     return (
       <div>
         <h5>
           Соединение {link.startName} - {link.endName}
         </h5>
         <label>
-          Длина:
+          Длина(km):
           <input
             type="number"
             value={link.length}
@@ -15,19 +17,11 @@ const LinksDataForm = ({ link, index, handleLinkInfoChange}) => {
           />
         </label>
         <label>
-          Диаметр:
+          Диаметр(m):
           <input
             type="number"
             value={link.diameter}
             onChange={handleLinkInfoChange(index, 'diameter')}
-          />
-        </label>
-        <label>
-          Коэффициент гидравлического трения:
-          <input
-            type="number"
-            value={link.resistanceFactor}
-            onChange={handleLinkInfoChange(index, 'resistanceFactor')}
           />
         </label>
       </div>

@@ -64,7 +64,7 @@ const Calc = () => {
                 </div>
 
             </div>
-            <RenderResult multiConnectionNodes={result.multiConnectionNodes} />
+            <RenderResult linksInfo={result.linksInfo} multiConnectionNodes={result.multiConnectionNodes} />
         </div>
 
     );
