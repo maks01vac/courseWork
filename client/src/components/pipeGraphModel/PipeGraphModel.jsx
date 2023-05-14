@@ -89,13 +89,31 @@ const PipeGraphModel = ({pipeModelInfo,setPipeModelInfo}) => {
     cy.contextMenus({
       menuItems: [
         {
+          id: 'delete-all-nodes',
+          content: 'Удалить все точки',
+          tooltipText: 'Удалить все точки',
+          selector: 'core',
+          onClickFunction: () => {
+            cy.elements().remove();
+            setPipeModelInfo({
+              idPipe:'',
+              allNodes: [],
+              singleConnectionNodes: [],
+              multiConnectionNodes: [],
+              linksInfo: []
+          })
+            nameNodeRef.current = 1
+          }},
+        {
           id: 'remove',
           content: 'Удалить',
           selector: 'node',
           onClickFunction: function (event) {
             const node = event.target;
             node.remove();
-
+            if(pipeModelInfo.allNodes.length === 0){
+              nameNodeRef.current = 1
+            }
             const nodeId = node.id()
             setPipeModelInfo((prev) => {
               const newNodesAndLinkInfo = {

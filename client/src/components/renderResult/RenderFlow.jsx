@@ -7,7 +7,7 @@ const RenderFlow = ({linksInfo}) => {
             <div key={index} className='resultElement'>
                 <h5>Труба {link.startName} - {link.endName}</h5>
                 <ul>
-                    <li>Поток - <b>{link.flow_rate}</b> м/с </li>
+                    <li>Поток: <b>{link.flow_rate}</b> м/с </li>
                 </ul>
             </div>
         ))}
