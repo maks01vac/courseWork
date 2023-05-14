@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import GraphDataForm from '../formPipeParam/GraphDataForm';
 import PipeGraphModel from '../pipeGraphModel/PipeGraphModel';
 import './style/Calc.css';
 import RenderResult from '../renderResult/RenderResult';
 
 const Calc = () => {
+
+    const idPipe = useRef(1)
+
     const nodesAndLinkInfo = {
+        idPipe:'',
         allNodes: [],
         singleConnectionNodes: [],
         multiConnectionNodes: [],
         linksInfo: []
     }
 
-    const [result, setResult] = useState(nodesAndLinkInfo)
+    const [results, setResults] = useState([])
     const [pipeModelInfo, setPipeModelInfo] = useState(nodesAndLinkInfo)
     const [sortedPipeModelInfo, setSortedPipeModelInfo] = useState(pipeModelInfo);
 
@@ -56,7 +60,7 @@ const Calc = () => {
         <div className="Calc">
             <div className="formAndModel">
                 <div className="pipeGraphForm">
-                    <GraphDataForm graphData={sortedPipeModelInfo} setResult={setResult} />
+                    <GraphDataForm idPipe={idPipe} graphData={sortedPipeModelInfo} results={results} setResults={setResults} />
                 </div>
 
                 <div className="graphModelBox">
@@ -64,7 +68,7 @@ const Calc = () => {
                 </div>
 
             </div>
-            <RenderResult linksInfo={result.linksInfo} multiConnectionNodes={result.multiConnectionNodes} />
+            <RenderResult idPipe={idPipe} results={results} setResults={setResults} />
         </div>
 
     );

@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import styles from './style/FormPipeParam.module.css';
 import NetworkDataForm from '../networkDataForm/NetworkDataForm';
-import LinksDataForm from '../linksDataForm/LinksDataForm';
-import SingleConnectionsNodeForm from '../singleConnectionsNodesForm/SingleConnectionsNodeForm';
 import axios from 'axios'
 import LinksDataFormCollections from '../linksDataForm/LinksDataFormCollections';
 import SingleConnectionsNodeFormCollections from '../singleConnectionsNodesForm/SingleConnectionsNodeFormCollections';
-import RenderResult from '../renderResult/RenderResult';
+import isSimilarResult from './utils/isSimilarResult.js';
+import Loader from '../loader/Loader';
 
-const GraphDataForm = ({ graphData, setResult }) => {
 
+const GraphDataForm = ({ idPipe, graphData, results, setResults }) => {
+
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
+    idPipe:'',
     generalData: {
       viscosity: '',
       density: '',
@@ -103,9 +106,19 @@ const GraphDataForm = ({ graphData, setResult }) => {
     if (!existenseunconnectedNodes) return alert('Соедините все узлы!')
 
     try {
+      setIsLoading(true)
       const result = await sendDataToServer(formData)
-      setResult(result)
-    } catch {
+      setIsLoading(false)
+      const existanceCheck = isSimilarResult(result,results)
+      
+      if(existanceCheck){
+        result.idPipe = idPipe.current
+        setResults([...results, result])
+        idPipe.current++
+      }
+
+    } catch(e) {
+      console.log(e)
       alert('Что то пошло не так')
 
     }
@@ -149,6 +162,7 @@ const GraphDataForm = ({ graphData, setResult }) => {
         <button type="submit" onClick={calculationOfFluidFlowAndPressure}>
           Рассчитать
         </button>
+        <Loader isVisible={isLoading}/>
         
       </div>
     </form>

@@ -1,26 +1,38 @@
-.result{
+.result {
     padding: 10px;
     box-sizing: border-box;
     border: 2px solid #9f9f9f;
     background-color: #fff;
-    border-radius:5px;
-    box-shadow:2px 2px rgb(66, 66, 66);
+    border-radius: 5px;
+    box-shadow: 2px 2px rgb(66, 66, 66);
 }
-.resultBox{
+
+.resultBox {
     padding: 10px;
 }
 
-.renderResult{
+.renderResult {
     display: flex;
     align-items: center;
-    height: 150px;
-    justify-content: flex-start
+    min-height: 120px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
-.resultElement{
+
+.pipeRes {
+    border: 2px solid #9f9f9f;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.resultElement {
     padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .resultElement ul {
@@ -38,4 +50,8 @@
     display: inline-block;
     width: 10px;
     margin-right: 10px;
+}
+
+.deleteResult{
+    padding:7px;
 }
