@@ -2,7 +2,7 @@ import React from 'react';
 import './styles/Fotter.css';
 import logo from './img/logo.png'
 
-const Fotter = () => {
+const Footer = () => {
     return (
         <footer>
             <div className="fotter">
@@ -20,4 +20,4 @@ const Fotter = () => {
     );
 };
 
-export default Fotter;
+export default Footer;

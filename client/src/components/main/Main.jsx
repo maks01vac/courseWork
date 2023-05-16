@@ -1,6 +1,6 @@
 import React from 'react'
-import Calc from '../calc/Calc.jsx'
-import DescriptionCalc from '../descriptionCalc/DescriptionCalc.jsx';
+import Calc from '../Calc/Calc.jsx';
+import DescriptionCalc from '../DescriptionCalc/DescriptionCalc.jsx';
 import './styles/Main.css'
 
 const Main = () => {

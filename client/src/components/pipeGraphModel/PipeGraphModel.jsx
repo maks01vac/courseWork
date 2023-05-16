@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {useEffect, useRef } from 'react';
 import cytoscape from 'cytoscape';
 import contextMenus from 'cytoscape-context-menus';
 import 'cytoscape-context-menus/cytoscape-context-menus.css';
@@ -7,7 +7,6 @@ import separatePointsByConnections from './separatePointsByConnections';
 import getStartAndEndIdNodes from './getStartAndEndIdNodes';
 
 const PipeGraphModel = ({pipeModelInfo,setPipeModelInfo}) => {
-  const nodesAndLinkInfo = pipeModelInfo
   const nameNodeRef = useRef(1);
   const cyRef = useRef(null);
 
@@ -92,7 +91,7 @@ const PipeGraphModel = ({pipeModelInfo,setPipeModelInfo}) => {
           id: 'delete-all-nodes',
           content: 'Удалить все точки',
           tooltipText: 'Удалить все точки',
-          selector: 'core',
+          selector: 'node',
           onClickFunction: () => {
             cy.elements().remove();
             setPipeModelInfo({

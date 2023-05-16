@@ -1,17 +1,16 @@
 
 import './App.css';
 
-import Header from './components/header/Header';
-import Main from './components/main/Main';
-import Calc from './components/calc/Calc.jsx'
-import Fotter from './components/fotter/Fotter';
+import Header from './components/Header/Header';
+import Main from './components/Main/Main';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
     <div className="App">
       <Header/>
       <Main/>
-      <Fotter/>
+      <Footer/>
     </div>
   );
 }

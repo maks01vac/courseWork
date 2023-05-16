@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NetworkDataForm = ({ generalData, handleGeneralDataChange}) => {
+const GeneralDataForm = ({ generalData, handleGeneralDataChange}) => {
     return (
       <div>
         <h3>Общие параметры</h3>
@@ -32,4 +32,4 @@ const NetworkDataForm = ({ generalData, handleGeneralDataChange}) => {
     );
   };
 
-export default NetworkDataForm;
+export default GeneralDataForm;

@@ -1,11 +1,11 @@
 import React, { useState, useEffect} from 'react';
 import styles from './style/FormPipeParam.module.css';
-import NetworkDataForm from '../networkDataForm/NetworkDataForm';
+import GeneralDataForm from '../GeneralDataForm/GeneralDataForm';
 import axios from 'axios'
-import LinksDataFormCollections from '../linksDataForm/LinksDataFormCollections';
-import SingleConnectionsNodeFormCollections from '../singleConnectionsNodesForm/SingleConnectionsNodeFormCollections';
+import LinksDataFormsCollection from '../LinksDataForm/LinksDataFormsCollection';
+import SingleConnectionsNodeFormsCollection from '../SingleConnectionsNodesForm/SingleConnectionsNodeFormsCollection';
 import isSimilarResult from './utils/isSimilarResult.js';
-import Loader from '../loader/Loader';
+import Loader from '../Loader/Loader';
 
 
 const GraphDataForm = ({ idPipe, graphData, results, setResults }) => {
@@ -140,21 +140,21 @@ const GraphDataForm = ({ idPipe, graphData, results, setResults }) => {
     <form onSubmit={handleSubmit}>
       <div className={styles.form_container}>
         <div className={styles.form_section}>
-          <NetworkDataForm
+          <GeneralDataForm
             generalData={formData.generalData}
             handleGeneralDataChange={handleGeneralDataChange}
           />
         </div>
 
         <div className={styles.form_section}>
-          <SingleConnectionsNodeFormCollections
+          <SingleConnectionsNodeFormsCollection
             singleConnectionNodes={formData.singleConnectionNodes}
             handleSingleNodeChange={handleSingleNodeChange}
           />
         </div>
 
         <div className={styles.form_section}>
-          <LinksDataFormCollections
+          <LinksDataFormsCollection
             links={formData.linksInfo}
             handleLinkInfoChange={handleLinkInfoChange}
           />

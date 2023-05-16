@@ -2,7 +2,7 @@ import React from 'react';
 import SingleConnectionsNodeForm from './SingleConnectionsNodeForm';
 
 
-const SingleConnectionsNodeFormCollections = ({ singleConnectionNodes, handleSingleNodeChange }) => {
+const SingleConnectionsNodeFormsCollection = ({ singleConnectionNodes, handleSingleNodeChange }) => {
 
     if(!singleConnectionNodes.length) {
         return <h3>Узлов с одним соединением нет</h3>
@@ -23,4 +23,4 @@ const SingleConnectionsNodeFormCollections = ({ singleConnectionNodes, handleSin
     );
 };
 
-export default SingleConnectionsNodeFormCollections;
+export default SingleConnectionsNodeFormsCollection;

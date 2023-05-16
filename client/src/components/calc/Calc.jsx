@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
-import GraphDataForm from '../formPipeParam/GraphDataForm';
-import PipeGraphModel from '../pipeGraphModel/PipeGraphModel';
+import GraphDataForm from '../GraphDataForm/GraphDataForm';
+import PipeGraphModel from '../PipeGraphModel/PipeGraphModel';
 import './style/Calc.css';
-import RenderResult from '../renderResult/RenderResult';
+import RenderResult from '../RenderResult/RenderResult';
 
 const Calc = () => {
 
@@ -43,7 +43,6 @@ const Calc = () => {
     };
 
     useEffect(() => {
-        console.log('Изменения')
         const sortedNodesAndLinkInfo = {
             ...pipeModelInfo,
             singleConnectionNodes: sortByName(pipeModelInfo.singleConnectionNodes),
