@@ -8,8 +8,20 @@ body {
   background: #ffffff;
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat';
-  color: #003366;
+  color: #0d4c6a;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: inherit;
+}
+
+a {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button{
+  font-family: inherit;
+  font-weight:inherit;
+  font-size: inherit;
 }
 
 #root{

@@ -1,0 +1,43 @@
+
+.info-block {
+    background-color: #ffffff; /* Цвет фона блока */
+    border: 2px solid #0d4c6a; /* Граница блока */
+    border-radius: 10px; /* Скругление углов */
+    padding: 30px; /* Внутренние отступы */
+    width: 300px; /* Максимальная ширина блока */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень блока */
+    margin: 10px; /* Внешние отступы */
+    height: 50%;
+    font-weight: 800;
+    margin: 0 5%;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+  }
+  
+  .info-block-title {
+    color: #0d4c6a; /* Цвет заголовка */
+    margin-bottom: 15px; /* Отступ заголовка снизу */
+    text-align: center
+  }
+  
+  .info-block-content {
+    color:#0d4c6a ; /* Цвет текста */
+    line-height: 1.6; /* Межстрочный интервал */
+
+  }
+  
+  
+  .info-block-list li {
+    color:#0d4c6a; /* Цвет пунктов списка */
+    line-height: 1.6; /* Межстрочный интервал */
+  }
+
+  .instruction-blocks{
+   height: 1000px;
+  }
+  .FAQ-blocks{
+    height: 500px;
+  }

@@ -1,21 +1,27 @@
-import React from 'react'
-import logo from './img/logo.png'
-import './style/header.css'
+import React from 'react';
+import './style/header.css'; // Импортируем стили
+import logo from './img/logoimage.png';
 
-export default function Header() {
+const Header = () => {
   return (
-    <header>
-      <div className='header'>
-      <a href="/" className="logo">
-          <img src={logo} alt="logo" />
-        </a>
-        <nav className="navbar">
-          <a href="#about">О проекте</a>
-          <a href="#help">Помощь</a>
-          <a href="#contact">Контакты</a>
-        </nav>
-      </div>
+    <header className="header">
+      <div className="header-content">
+        <div className="logo">
+          <img src={logo} className='logo-image' />
+          <a href="" className="nav-link">PipeNetCalc</a>
+        </div>
 
+        <nav className="navigation">
+          <a href="/help" className="nav-link">Помощь</a>
+          <a href="/about" className="nav-link">О нас</a>
+        </nav>
+        <div className="right-section">
+          <button className="nav-button">Войти</button>
+          <button className="nav-button nav-button--signup">Зарегистрироваться</button>
+        </div>
+      </div>
     </header>
-  )
-}
+  );
+};
+
+export default Header;

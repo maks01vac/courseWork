@@ -5,7 +5,7 @@ import axios from 'axios'
 import LinksDataFormsCollection from '../LinksDataForm/LinksDataFormsCollection';
 import SingleConnectionsNodeFormsCollection from '../SingleConnectionsNodesForm/SingleConnectionsNodeFormsCollection';
 import isSimilarResult from './utils/isSimilarResult.js';
-import Loader from '../Loader/Loader';
+import Loader from '../loader/Loader';
 
 
 const GraphDataForm = ({ idPipe, graphData, results, setResults }) => {

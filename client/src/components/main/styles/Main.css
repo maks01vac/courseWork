@@ -1,10 +1,119 @@
-main{
-    width: 100%;
-    margin: 0;
+.main {
+    position: relative;
+    /* Родительский контейнер с относительным позиционированием */
+    height: 600px;
+    max-width: 100%;
 }
 
-.main{
+.content {
     margin: 0 auto;
-    max-width: 1440px;
-    padding:0 10px;
+    max-width: 1400px;
+}
+
+.top-block {
+    position: relative;
+    /* Для позиционирования дочерних блоков */
+}
+
+.main-text {
+    font-size: 40px;
+    width: 50%;
+    margin-left: 40px;
+    margin-top: 40px;
+    font-weight: 1000;
+    color: #367694;
+}
+
+.right-text {
+    font-size: 23px;
+    margin-right: 40px;
+    line-height: 1.5em;
+}
+
+.overlay-block {
+    top: 20px;
+    /* Расстояние от верха родительского блока */
+    z-index: 10;
+    /* Устанавливаем поверх других элементов */
+    height: 500px;
+    position: relative;
+    /* Относительно позиционированный блок для кнопки */
+    display: flex;
+}
+
+.new-project {
+    height: 500px;
+    position: absolute;
+    /* Абсолютное позиционирование для наложения блоков */
+    margin-top: -250px;
+    /* Поднимаем блок вверх относительно следующего за ним контента */
+    background-color: #0d4c6a;
+    width: 87%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 8%;
+    color: white;
+    justify-content: space-around;
+    left: 5%;
+    transform: translateX(-2.5%)
+}
+
+.new-project-text {
+    font-size: 45px;
+    font-weight: 1000;
+    width: 40%;
+    letter-spacing: 2px;
+    line-height: 1.5em;
+}
+
+.new-project-button {
+    background-color: white;
+    color: #0d4c6a;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: 2px solid #0d4c6a;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: 1000;
+    font-size: 25px;
+}
+.new-project-button:hover{
+    color: white;
+    background-color:#367694;
+}
+.info-blocks {
+    height: 750px;
+    /* Стилизация информационных блоков */
+    background-color: #95c6d4;
+    /* Пример цвета фона */
+    width: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+
+}
+
+.info-items {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.user-guide-section {
+    height: 700px;
+}
+
+.FAQ-section {
+    height: 500px;
+    background-color: #95c6d4;
+}
+.about-section{
+    height:700px;
+}
+.footer{
+    height:300px;
+    background-color: #0d4c6a;
 }
