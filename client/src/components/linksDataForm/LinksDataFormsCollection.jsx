@@ -1,7 +1,7 @@
 import React from 'react';
 import LinksDataForm from './LinksDataForm';
 
-const LinksDataFormCollections = ({links, handleLinkInfoChange}) => {
+const LinksDataFormsCollection = ({links, handleLinkInfoChange}) => {
 
     if(!links.length){
         return <h3>Соединений нет</h3>
@@ -21,4 +21,4 @@ const LinksDataFormCollections = ({links, handleLinkInfoChange}) => {
     );
 };
 
-export default LinksDataFormCollections;
+export default LinksDataFormsCollection;

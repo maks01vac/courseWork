@@ -110,9 +110,11 @@ const PipeGraphModel = ({pipeModelInfo,setPipeModelInfo}) => {
           onClickFunction: function (event) {
             const node = event.target;
             node.remove();
+
             if(pipeModelInfo.allNodes.length === 0){
               nameNodeRef.current = 1
             }
+            
             const nodeId = node.id()
             setPipeModelInfo((prev) => {
               const newNodesAndLinkInfo = {
