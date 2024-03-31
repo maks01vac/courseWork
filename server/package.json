@@ -5,7 +5,9 @@
     "child_process": "^1.0.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "nodemon": "^2.0.22"
+    "express-validator": "^7.0.1",
+    "nodemon": "^2.0.22",
+    "pg": "^8.11.3"
   },
   "scripts": {
     "start": "nodemon server.js"

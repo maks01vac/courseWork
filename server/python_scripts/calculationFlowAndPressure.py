@@ -55,6 +55,9 @@ def process_data(data):
             for node in data["multiConnectionNodes"]:
                 if node["name"] == allNodes[i]["data"]["name"]:
                     node["pressure"] = junction_pressures[node["name"]]
+    
+    for node in data["allNodes"]:
+        node['pressure'] = junction_pressures[node["data"]['name']]
 
 
     for i in range(len(data["linksInfo"])):
