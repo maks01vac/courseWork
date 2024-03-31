@@ -128,7 +128,9 @@ const GraphDataForm = ({ idPipe, graphData, results, setResults }) => {
 
   async function sendDataToServer(graphData) {
     try {
-      const response = await axios.post('http://localhost:3001/process-data', graphData);
+      const response = await axios.post('http://localhost:3001/api/pipelineCalc', graphData);
+      console.log(response.data)
+      await axios.post('http://localhost:3001/api/user/2/pipelines', response.data);
       return response.data;
     } catch (error) {
       console.error(`Ошибка отправки данных на сервер: ${error}`);

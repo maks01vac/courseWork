@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles/Main.css'
 import InfoBlock from '../InfoBlock/InfoBlock.jsx';
-
+import Calc from '../Calc/Calc.jsx';
 const Main = () => {
 
   const infoBlocksContent = [{
@@ -50,7 +50,7 @@ const Main = () => {
         </div>
       </div>
       <div className="user-guide-section">
-
+            <Calc/>
       </div>
       <div className="FAQ-section">
 
