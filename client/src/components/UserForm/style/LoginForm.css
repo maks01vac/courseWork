@@ -1,0 +1,97 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.form-inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-title {
+  font-size: 24px;
+  font-size: 32px;
+  color: #0d4c6a;
+  font-weight: 1000;
+  line-height: 1.3333;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.form-input {
+  font-size: 16px;
+  width: 95%;
+  padding: 15px;
+  margin-bottom: 10px;
+  outline: none;
+  background-color: #fff;
+  border-radius: 0px;
+  border:0px;
+  border-bottom:3px solid #0d4c6a;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+    border-bottom:3px solid #378cb3;
+}
+
+.form-button {
+  font-size: 23px;
+  padding: 13px 20px;
+  width: 75%;
+  margin-top: 20%;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #0d4c6a;
+  transition: background-color 0.3s,;
+}
+
+.form-button:hover {
+  background-color: #2a80a8;
+}
+
+
+.form-link {
+  text-align: center;
+  margin-top: 16px;
+  color: #0d4c6a ;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.form-link:hover {
+  text-decoration: underline;
+}
+
+/* Это стиль для альтернативных действий, таких как "Нужен аккаунт?" или "Забыли пароль?" */
+.form-action {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.form-action a {
+  color: #0d4c6a;
+  text-decoration: none;
+}
+
+.form-action a:hover {
+  text-decoration: underline;
+}
+.error{
+    font-size: 15px;
+    color:red;
+    margin: 10px 0;
+    border-bottom: 3px solid red;
+}

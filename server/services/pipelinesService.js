@@ -2,20 +2,29 @@
 
 const pipelinesRepository = require('../repositories/PipelinesRepository')
 const usersRepository = require('../repositories/usersRepository');
-const separatePointsByConnections = require('./func/separatePointsByConnections')
+const restructurePipelinesData = require('./func/restructurePipelinesData')
 
 const pipelinesService = {}
 
 pipelinesService.getUserPipelines = async (userId) => {
     if (!userId) {
-        throw new Error('Не предоставлен ID пользователя');
+        return{
+            success: false,
+            message: 'Не предоставлен ID пользователя'
+        }
     }
     // Проверяем, существует ли пользователь
-    const userExists = await usersRepository.findById(userId);
+    const userExists = await usersRepository.getById(userId);
     if (!userExists) {
-        throw new Error('Пользователь не найден');
+        return{
+            success: false,
+            message: 'Пользователь не найден'
+        }
     }
-    return await pipelinesRepository.findByUserId(userId);
+    resultGetPipelinesByUser = await pipelinesRepository.findByUserId(userId)
+    resultGetPipelinesByUser = resultGetPipelinesByUser.map((pipeline) => {return restructurePipelinesData(pipeline)})
+
+    return resultGetPipelinesByUser;
 };
 
 pipelinesService.createPipeline = async (userId, pipelineData) => {
@@ -39,50 +48,9 @@ pipelinesService.getPipeline = async (pipelineId) => {
             throw new Error('Не предоставлен ID пиплайна');
         }
 
-        const resultGetPipeline = await pipelinesRepository.findById(pipelineId);
+        const data = await pipelinesRepository.findById(pipelineId);
 
-        resultGetPipeline.connections = resultGetPipeline.connections.map((connection) => {
-            return{
-                startId: connection.startnodeid,
-                startName: searhNodeName(connection.startnodeid, resultGetPipeline.nodes),
-                endId: connection.endnodeid,
-                endName:searhNodeName(connection.endnodeid, resultGetPipeline.nodes),
-                length:connection.length,
-                diameter: connection.diameter,
-                flow_rate:connection.flowrate
-            }
-        })
-
-        resultGetPipeline.nodes = resultGetPipeline.nodes.map((node) => {
-            return {
-                group: 'nodes',
-                data: {
-                    id: node.nodeid,
-                    name: node.nodename
-                },
-                position: {
-                    x: node.positionx,
-                    y: node.positiony
-                },
-                initPressure: node.pressure,
-                pressure: node.pressure
-            }
-        })
-        const singleOrMultiPointsInfo = separatePointsByConnections(resultGetPipeline.connections);
-
-        const restructureResult = {
-            generalData: {
-                viscosity: resultGetPipeline.viscosity,
-                density: resultGetPipeline.density,
-                roughness: resultGetPipeline.roughness
-            },
-            linksInfo:resultGetPipeline.connections,
-            multiConnectionNodes: singleOrMultiPointsInfo.multipleConnectionPoints,
-            singleConnectionNodes: singleOrMultiPointsInfo.singleConnectionPoints,
-            allNodes: resultGetPipeline.nodes
-        }
-
-        return restructureResult
+        return restructurePipelinesData(data)
 
     } catch (error) {
         console.log(error);
@@ -92,11 +60,12 @@ pipelinesService.getPipeline = async (pipelineId) => {
 
 pipelinesService.updatePipeline = async (pipelineId, pipelineData) => {
     // Здесь может быть дополнительная валидация pipelineData перед обновлением записи
-    const pipeline = await pipelinesRepository.findById(pipelineId);
-    if (!pipeline) {
-        throw new Error('Пиплайн не найден');
+    const oldPipelineDelete = await pipelinesRepository.deleteById(pipelineId);
+
+    if(!oldPipelineDelete){
+        return oldPipelineDelete
     }
-    return await pipelinesRepository.update(pipelineId, pipelineData);
+    await pipelinesRepository.createFullPipeline(pipelineData.userId, pipelineData);
 };
 
 pipelinesService.deletePipeline = async (pipelineId) => {
@@ -104,7 +73,7 @@ pipelinesService.deletePipeline = async (pipelineId) => {
     if (!pipeline) {
         throw new Error('Пиплайн не найден');
     }
-    await pipelinesRepository.delete(pipelineId);
+    await pipelinesRepository.deleteById(pipelineId);
 };
 
 pipelinesService.getUserReports = async (userId) => {
@@ -124,9 +93,7 @@ function convertStringNumbersToNumbers(obj) {
     }
 }
 
-function searhNodeName (id, nodes) {
-    const node = nodes.find((node)=> node.nodeid == id)
-    return node.nodename
-}
+
+
 
 module.exports = pipelinesService

@@ -4,11 +4,10 @@ const dbPool = require('../db_pool/db_pool')
 
 usersRepository.getById = async function (id) {
     try {
-        console.log(id)
         const client = await dbPool.connect();
         const result = await client.query('SELECT * FROM users WHERE userid = $1', [id]);
         client.release();
-        
+
         if (result.rows.length === 0) {
             return null; // или выбросить ошибку, если считаете это более уместным
         }
@@ -20,32 +19,66 @@ usersRepository.getById = async function (id) {
     }
 };
 
+usersRepository.findByEmailAndPassword = async function (email, password) {
+    const client = await dbPool.connect();
+    
+    try {
+        
+        const result = await client.query('SELECT * FROM Users WHERE Email = $1 AND passwordhash = $2', [email, password]);
+        if (result.rows[0]) {
+
+            const resultAnswer = {
+                success: true,
+                email: email,
+                userid: result.rows[0].userid
+            }
+            return resultAnswer
+        }
+
+        return {
+            success: false,
+            message: 'Неверный email или пароль'
+        }
+
+
+
+    } catch (error) {
+        console.error("Ошибка при запросе к базе данных: ", error);
+        return {
+            success: false,
+            error: error,
+            message: "Ошибка при запросе к базе данных: "
+        }
+    } finally {
+        client.release();
+    }
+};
+
 
 
 usersRepository.createNewUser = async function (userData) {
-    console.log('В репе')
-
-    // if (!employeeData) throw new Error('One or more parameters undefined')
+    if (!userData) throw new Error('One or more parameters undefined')
 
     try {
-        console.log('В репе 2')
         const client = await dbPool.connect();
-        console.log('Подключился к дб')
-        client.query('INSERT INTO users (username, email, passwordhash) VALUES ($1, $2, $3)', 
-        [userData.username, userData.email, userData.passwordhash]);
-        console.log('Отправил sql')
+
+        client.query('INSERT INTO users (username, email, passwordhash) VALUES ($1, $2, $3)',
+            [userData.username, userData.email, userData.passwordhash]);
+
         return {
             success: true,
+            message: 'Пользователь успешно создан'
         }
     }
     catch (err) {
-        console.log('Шибка репа')
+
         return {
             success: false,
+            error: err
         }
 
     }
-    
+
 }
 
 usersRepository.findByEmailOrUsername = async function (email, username) {

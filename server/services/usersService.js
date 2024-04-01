@@ -14,7 +14,26 @@ usersService.createNewUser = async function (userData) {
         return newUser;
     } catch (err) {
         console.error('Ошибка при создании пользователя: ', err);
-        throw err;
+
+        return{
+            success: false,
+            message:'Ошибка при создании пользователя',
+            error:err
+        }
+    }
+};
+
+usersService.authenticateUser = async (dataUser) => {
+    try{
+        const user = await userRepository.findByEmailAndPassword(dataUser.email, dataUser.password);
+        console.log(user)
+        return user
+    }catch(err) {
+        console.log(err)
+        return{
+            success:false,
+            message:'Ошибка авторизации'
+        }
     }
 };
 

@@ -2,6 +2,8 @@ import React from 'react'
 import './styles/Main.css'
 import InfoBlock from '../InfoBlock/InfoBlock.jsx';
 import Calc from '../Calc/Calc.jsx';
+
+
 const Main = () => {
 
   const infoBlocksContent = [{

@@ -9,7 +9,7 @@ pipelinesController.getUserPipelines = async (req, res) => {
         const pipelines = await pipelinesService.getUserPipelines(userId);
         res.json(pipelines);
     } catch (error) {
-        res.status(500).json({ message: 'Ошибка при получении сетей пользователя' });
+        res.status(500).json({ message: 'Ошибка при получении сетей пользователя', error:error });
     }
 };
 
@@ -24,7 +24,6 @@ pipelinesController.createPipeline = [
 
         try {
             const userId = req.params.userId;
-            console.log(userId)
             const pipelineData = req.body; // данные сети из запроса
             const newPipeline = await pipelinesService.createPipeline(userId, pipelineData);
             res.status(201).json(newPipeline);

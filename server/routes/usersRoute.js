@@ -15,6 +15,8 @@ usersRouter.post('/users', [
     body('passwordhash').isLength({ min: 5 }).withMessage('Пароль слишком короткий')
 ], usersController.createNewUser);
 
+usersRouter.post('/users/login', usersController.authenticateUser);
+
 
 // usersRouter.put('/users/:id',usersController.updateById);
   
