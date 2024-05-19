@@ -20,6 +20,7 @@ pipelinesRouter.put('/pipelines/:pipelineId', pipelinesController.updatePipeline
 pipelinesRouter.delete('/pipelines/:pipelineId', pipelinesController.deletePipeline);
 
 // Получить отчеты пользователя
-pipelinesRouter.get('/user/:userId/reports', pipelinesController.getUserReports);
+pipelinesRouter.post('/pipelines/:pipelineId/report', pipelinesController.createReport);
+
 
 module.exports = pipelinesRouter;

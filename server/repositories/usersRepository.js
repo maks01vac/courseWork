@@ -30,7 +30,8 @@ usersRepository.findByEmailAndPassword = async function (email, password) {
             const resultAnswer = {
                 success: true,
                 email: email,
-                userid: result.rows[0].userid
+                userid: result.rows[0].userid,
+                username:result.rows[0].username
             }
             return resultAnswer
         }

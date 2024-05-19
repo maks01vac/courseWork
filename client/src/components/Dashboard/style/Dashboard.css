@@ -1,0 +1,256 @@
+/* Dashboard.css */
+.dashboard {
+  max-width: 100%;
+}
+
+.cont {
+  display: flex;
+  height: 90vh;
+  max-width: 1400px;
+  margin: 0 auto;
+
+}
+
+.dashboard-content {
+  flex-grow: 1;
+  padding: 20px;
+  margin: 10px;
+  background-color: #95c6d4;
+  /* светлый фон для контента */
+  border-radius: 10px;
+  border: 3px solid #0d4c6a;
+  min-width: 67%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  position: relative;
+
+  /* Это гарантирует, что полоса прокрутки остается в пределах блока */
+}
+
+/* Sidebar.css */
+.sidebar {
+  min-width: 27%;
+  /* фиксированная ширина для сайдбара */
+  background-color: #95c6d4;
+  /* темный фон для сайдбара */
+  color: white;
+  margin: 10px;
+  border-radius: 10px;
+  border: 3px solid #0d4c6a;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around
+}
+
+.sidebar-info {
+  text-align: center;
+  color: #0d4c6a;
+  ;
+}
+
+.links {
+  width: 100%;
+}
+
+.sidebar-link {
+  min-width: 100%;
+  display: block;
+  color: #0d4c6a;
+  padding: 10px;
+  text-decoration: none;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.sidebar-link.active,
+.sidebar-link:hover {
+  background-color: #0d4c6a;
+  /* более темный фон для активной/наведенной ссылки */
+  width: 100%;
+  border-radius: 0px;
+  color: white;
+}
+
+.sidebar-create-button {
+  border: 0;
+  text-decoration: none;
+  width: 50%;
+  font-weight: 1000;
+  transition: background-color 0.3s, color 0.3s;
+  background-color: #0d4c6a;
+  padding: 10px 15px;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+}
+
+.sidebar-create-button:hover {
+  background-color: #3883a5;
+}
+
+
+.logout-button:hover {
+  color: red;
+  /* темно-красный фон при наведении */
+  background: none;
+}
+
+.logout-button {
+  color: #505cd4;
+  background: none;
+  border-radius: 0px;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 20px;
+  padding: 10px;
+  font-size: 25px;
+  font-weight: 1000;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.create-pipeline-block {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items:center
+}
+.pipeline-graph-block{
+  min-height:80%;
+  margin:10px;
+  width: 90%;
+}
+
+.element-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2); /* Лёгкая, почти незаметная тень */
+  padding: 1px;
+  position: absolute;
+  right: 75px;
+  top: 30%;
+  z-index: 100;
+  border-radius: 5px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  padding: 7px;
+  position: relative;
+}
+
+.element-selector img{
+  margin-top:3px;
+  width: 40px; /* или другой размер, подходящий для вашего дизайна */
+  height: auto; /* сохраняет пропорции изображения */
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: #000;
+  opacity: 0; /* Начальное состояние невидимости */
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  white-space: nowrap;
+  z-index: 101;
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 10px);
+  transform: translateY(-50%);
+  font-weight: 700;
+  transition: visibility 0s linear 0.1s; /* Плавный переход */
+}
+
+.tooltip::after {
+  content: ""; /* Необходимо для создания псевдоэлемента */
+  position: absolute; /* Абсолютное позиционирование относительно подсказки */
+  top: 15%; /* Размещение под подсказкой */
+  left: calc(100% + 10px); /* Центрирование указателя */
+  margin-left: -18px; /* Смещение указателя на половину его ширины для точного центрирования */
+  border-width: 15px; /* Размер треугольника */
+  border-style: solid; /* Стиль границы (нужен для создания треугольника) */
+  border-color: transparent transparent transparent black; /* Цвета границ: верхняя видима, остальные прозрачны */
+}
+
+.icon-button:hover .tooltip {
+  visibility: visible;
+  opacity: 1; /* Полная видимость при наведении */
+}
+.icon-button .tooltip {
+  transition: opacity 0.5s linear, visibility 0s linear 0s; /* Удалить задержку при отведении */
+}
+
+.icon-button.active {
+  background-color: #0d4c6a;
+  color: white;
+}
+
+.data-form{
+  width: 100%;
+}
+
+
+.error-modal-content {
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
+}
+
+.error-modal-content h4 {
+  color: #d32f2f;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.error-modal-content ul {
+  text-align: left;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.error-modal-content ul li {
+  background-color: #ffebee;
+  border-left: 5px solid #d32f2f;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.error-modal-content button {
+  padding: 10px 20px;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.error-modal-content button:hover {
+  background-color: #b71c1c;
+}
+
+.result-button{
+  width: 100%;
+  display: flex;
+  justify-content:space-around;
+  padding: 10px;
+}

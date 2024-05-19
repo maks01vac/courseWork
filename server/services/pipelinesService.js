@@ -3,6 +3,7 @@
 const pipelinesRepository = require('../repositories/PipelinesRepository')
 const usersRepository = require('../repositories/usersRepository');
 const restructurePipelinesData = require('./func/restructurePipelinesData')
+const { generateDocxBuffer } = require('./utils/docxReportGenerator');
 
 const pipelinesService = {}
 
@@ -22,7 +23,6 @@ pipelinesService.getUserPipelines = async (userId) => {
         }
     }
     resultGetPipelinesByUser = await pipelinesRepository.findByUserId(userId)
-    resultGetPipelinesByUser = resultGetPipelinesByUser.map((pipeline) => {return restructurePipelinesData(pipeline)})
 
     return resultGetPipelinesByUser;
 };
@@ -76,19 +76,52 @@ pipelinesService.deletePipeline = async (pipelineId) => {
     await pipelinesRepository.deleteById(pipelineId);
 };
 
-pipelinesService.getUserReports = async (userId) => {
-    // Предполагаем, что есть функция в usersRepository для получения отчетов
-    return await usersRepository.getReportsByUserId(userId);
+
+
+
+// Другие методы сервиса
+
+pipelinesService.getReportBuffer = async (pipelineId) => {
+    const pipeline = await pipelinesRepository.findById(pipelineId);
+
+    if (!pipeline) {
+        throw new Error('Пиплайн не найден');
+    }
+
+    return await generateDocxBuffer(restructurePipelinesData(pipeline));
 };
+
+module.exports = pipelinesService;
+
+
 
 function convertStringNumbersToNumbers(obj) {
     for (const key in obj) {
-        if (typeof obj[key] === 'string' && !isNaN(obj[key]) && obj[key].trim() !== '') {
-            // Преобразовать строку в число, если это возможно
-            obj[key] = +obj[key];
+        if (typeof obj[key] === 'string') {
+            // Если строка пустая или состоит только из пробелов, заменить на null
+            if (obj[key].trim() === '') {
+                obj[key] = null;
+            } else if (!isNaN(obj[key])) {
+                // Преобразовать строку в число, если это возможно
+                obj[key] = +obj[key];
+            }
         } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-            // Рекурсивно обрабатывать вложенные объекты и массивы
+            // Рекурсивно обрабатывать вложенные объекты
             convertStringNumbersToNumbers(obj[key]);
+        } else if (Array.isArray(obj[key])) {
+            // Рекурсивно обрабатывать массивы
+            obj[key].forEach((item, index) => {
+                if (typeof item === 'string' && item.trim() === '') {
+                    // Если элемент массива пустая строка, заменить на null
+                    obj[key][index] = null;
+                } else if (typeof item === 'string' && !isNaN(item)) {
+                    // Преобразовать строку в число, если это возможно
+                    obj[key][index] = +item;
+                } else if (typeof item === 'object' && item !== null) {
+                    // Обработка вложенных объектов внутри массива
+                    convertStringNumbersToNumbers(item);
+                }
+            });
         }
     }
 }

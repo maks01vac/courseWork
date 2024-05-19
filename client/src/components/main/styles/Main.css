@@ -1,7 +1,6 @@
 .main {
     position: relative;
     /* Родительский контейнер с относительным позиционированием */
-    height: 600px;
     max-width: 100%;
 }
 
@@ -16,7 +15,7 @@
 }
 
 .main-text {
-    font-size: 40px;
+    font-size: 37px;
     width: 50%;
     margin-left: 40px;
     margin-top: 40px;
@@ -102,16 +101,22 @@
     justify-content: center;
 }
 
-.user-guide-section {
-    height: 700px;
-}
 
-.FAQ-section {
-    height: 500px;
-    background-color: #95c6d4;
-}
+
 .about-section{
-    height:700px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px;
+}
+.about-section h3{
+    text-align: center;
+    font-size:30px
+}
+.about-section p {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom:40px;
+    line-height:35px
 }
 .footer{
     height:300px;

@@ -1,6 +1,10 @@
 // pipelinesController.js
 const { validationResult } = require('express-validator');
 const pipelinesService = require('../services/pipelinesService');
+
+
+
+
 const pipelinesController = {}
 
 pipelinesController.getUserPipelines = async (req, res) => {
@@ -9,7 +13,8 @@ pipelinesController.getUserPipelines = async (req, res) => {
         const pipelines = await pipelinesService.getUserPipelines(userId);
         res.json(pipelines);
     } catch (error) {
-        res.status(500).json({ message: 'Ошибка при получении сетей пользователя', error:error });
+        console.log(error)
+        res.status(500).json({ message: 'Ошибка при получении сетей пользователя', error: error });
     }
 };
 
@@ -21,13 +26,13 @@ pipelinesController.createPipeline = [
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-
         try {
             const userId = req.params.userId;
             const pipelineData = req.body; // данные сети из запроса
             const newPipeline = await pipelinesService.createPipeline(userId, pipelineData);
             res.status(201).json(newPipeline);
         } catch (error) {
+            console.log(error);
             res.status(500).json({ message: 'Ошибка при создании новой сети' });
         }
     }
@@ -76,14 +81,23 @@ pipelinesController.deletePipeline = async (req, res) => {
     }
 };
 
-pipelinesController.getUserReports = async (req, res) => {
-    const userId = req.params.userId;
+
+pipelinesController.createReport = async (req, res) => {
+    const pipelineId = req.params.pipelineId;
     try {
-        const reports = await pipelinesService.getUserReports(userId);
-        res.json(reports);
+        // Получаем буфер для отчета из сервисного слоя
+        const buffer = await pipelinesService.getReportBuffer(pipelineId);
+
+        // Возвращаем буфер клиенту
+        res.writeHead(200, {
+            'Content-Disposition': 'attachment; filename="report.docx"',
+            'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        });
+        res.end(buffer);
     } catch (error) {
-        res.status(500).json({ message: 'Ошибка при получении отчетов пользователя' });
+        res.status(500).json({ message: 'Ошибка при создании отчета', error });
     }
 };
+
 
 module.exports = pipelinesController

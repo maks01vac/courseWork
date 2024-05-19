@@ -3,18 +3,15 @@ import { Link, NavLink } from 'react-router-dom';
 import './style/header.css'; // Импортируем стили
 import logo from './img/logoimage.png';
 import Modal from '../Modal/Modal.jsx';
-import LoginForm from '../UserForm/LoginForm.jsx';
-import SignUpForm from '../UserForm/SignUpForm.jsx';
+import LoginForm from '../Form/UserForm/LoginForm.jsx';
+import SignUpForm from '../Form/UserForm/SignUpForm.jsx';
 import { useAuth } from '../../AuthContext/AuthContext.js';
 import axios from 'axios'
 
-const Header = () => {
-  const [showLogin, setShowLogin] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+const Header = ({showLogin, setShowLogin, modalOpen, setModalOpen}) => {
 
-  const { isAuthenticated, logout } = useAuth();
 
-  const auth = useAuth();
+  const { isAuthenticated, logout, login, user, userId } = useAuth();
 
   const handleLogin = async (email, password, setError) => {
     const dataUser = {
@@ -25,15 +22,15 @@ const Header = () => {
     const loginResult = await axios.post('http://localhost:3001/api/users/login', dataUser);
 
     if (loginResult.data.success) {
-      auth.login(loginResult.email, loginResult.userid)
+      login(loginResult.data.email, loginResult.data.userid,loginResult.data.username)
       setModalOpen(false);
       setError('')
     } else {
-      console.log(loginResult)
       setError(loginResult.data.message)
     }
 
   };
+
 
   const handleSignUp = async (username,email,password,setError) => {
 
@@ -42,7 +39,6 @@ const Header = () => {
       email:email,
       passwordhash:password
     }
-    console.log(userData)
     const resultCreateNewUser = await axios.post('http://localhost:3001/api/users',userData)
     console.log(resultCreateNewUser.data)
 
@@ -76,8 +72,7 @@ const Header = () => {
         </div>
 
         <nav className="navigation">
-          <NavLink to="/help" className="nav-link">Помощь</NavLink>
-          <NavLink to="/about-us" className="nav-link">О нас</NavLink>
+          <NavLink to="/docs" className="nav-link">Документация</NavLink>
         </nav>
         {!isAuthenticated ? (
         <div className="right-section">
@@ -86,7 +81,7 @@ const Header = () => {
         </div>
         ) : (
           <div className="right-section">
-            <button className="nav-button" onClick={logout}>Выйти</button>
+              <NavLink to="/dashboard/private-office" className="nav-button">Личный кабинет</NavLink>
           </div>
         )}
       <Modal isOpen={modalOpen} onClose={closeModal}>

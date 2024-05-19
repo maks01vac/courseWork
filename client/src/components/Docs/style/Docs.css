@@ -1,0 +1,22 @@
+.docs-container {
+    display: flex;
+    flex-direction: row;
+    height: 90vh; /* Настройте по своему усмотрению */
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    
+}
+
+.docs-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    background-color: #95c6d4;
+    /* темный фон для сайдбара */
+    color: white;
+    margin: 10px;
+    border-radius: 10px;
+    border: 3px solid #0d4c6a;
+}

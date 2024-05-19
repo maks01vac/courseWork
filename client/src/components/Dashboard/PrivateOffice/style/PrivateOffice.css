@@ -1,0 +1,35 @@
+.private-office-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+.private-office-content h2{
+    text-align: center;
+    font-size: 40px;
+
+}
+.private-office-content ul{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    
+}
+.private-office-content li{
+    text-align: center;
+    font-size: 25px;
+    list-style: none;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.delete-account-button{
+    background-color: rgb(255, 83, 83);
+    font-weight: 700;
+}
+
+.delete-account-button:hover{
+    background-color: red
+}

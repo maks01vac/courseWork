@@ -1,57 +1,79 @@
-.result {
-    padding: 10px;
-    box-sizing: border-box;
-    border: 2px solid #9f9f9f;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 2px 2px rgb(66, 66, 66);
-}
-
 .resultBox {
-    padding: 10px;
-}
-
-.renderResult {
-    display: flex;
-    align-items: center;
-    min-height: 120px;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-}
-
-.pipeRes {
-    border: 2px solid #003366;
-    border-radius: 5px;
-    margin: 10px 0;
-    padding: 5px;
+    background-color: #0d4c6a;
+    color: #ffffff;
+    border-radius: 8px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
     box-sizing: border-box;
-}
 
-.resultElement {
-    padding: 10px;
+}
+.result{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.result h3 {
+    display: inline-block;
+    font-weight: 700;
+}
+
+.pipeRes {
+    /* Немного более светлый темно-синий для блока результатов */
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 100%;
     box-sizing: border-box;
 }
 
-.resultElement ul {
-    list-style-type: none;
-    padding: 0;
-    font-size: 15px;
-}
-
-.resultElement ul li {
+.resultBox h4 {
+    margin-top: 0;
     margin-bottom: 10px;
+    font-size: 18px;
 }
 
-.resultElement ul li::before {
-    content: "•";
-    display: inline-block;
-    width: 10px;
-    margin-right: 10px;
+.result-component-box {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 2px solid white;
 }
 
-.deleteResult{
-    padding:7px;
+.result-component-elem-box {
+    margin: 10px 0;
+}
+
+.result-component-elem-box ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.result-component-elem-box li {
+    position: relative;
+    display: block;
+    margin-bottom: .25rem;
+    padding: .325rem .825rem .325rem 1.325rem;
+    color: #fff;
+    background: #1f5974;
+}
+
+.result-component-elem-box li:last-child {
+    margin-bottom: 0;
+}
+
+.result-component-elem-box li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0.5rem;
+    background:#0d435a;
+}
+
+.result-component-elem-box:nth-child() {
+    margin: 10px 0
 }

@@ -1,0 +1,45 @@
+.pipelines-block{
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.pipeline-block {
+    background-color: #0d4c6a; /* Цвет фона блока */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    border-radius: 8px; /* Скругление углов блока */
+    color: white; /* Цвет текста */
+    margin: 10px;
+    margin-bottom: 20px;
+    width: 31%;
+    box-sizing: border-box;
+    
+  }
+  
+  .pipeline-info {
+    margin-bottom: 50px;
+    font-size: 25px;
+  }
+  
+  .pipeline-block button {
+    font-size: 17px;
+    font-weight: 800;
+    background:none;
+    border: none;
+    color: white;
+    border-bottom: 2px solid white;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 0;
+    transition: background-color 0.3s;
+    padding: 5px;
+    
+  }
+  
+  .pipeline-block button:hover {
+    background-color: #1d3557; /* Цвет фона кнопок при наведении */
+  }

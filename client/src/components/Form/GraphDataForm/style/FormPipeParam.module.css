@@ -1,0 +1,120 @@
+.form_container {
+  width: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+
+}
+
+.form_container h3{
+  font-size: 21px;
+}
+
+.form_section {
+  margin-bottom: 2rem;
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #0d4c6a;
+  color: white;
+  font-weight: 700;
+  padding: 10px;
+}
+.checkbox{
+  width:100%;
+  border: 2px solid white;
+  border-radius:5px;
+  
+}
+.checkbox input{
+  width:30px;
+}
+h3 {
+  font-weight: 1000;
+  font-size: 25px;
+}
+
+
+.form_section h4 {
+  margin-bottom: 1rem;
+  border-bottom:2px solid white;
+  display: inline-block;
+  font-size: 20px;
+}
+
+
+label {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+input {
+  width: 100%;
+  padding: 7px;
+  margin-bottom: 1rem;
+  background-color:white;;
+  border-radius: 3px;
+  margin:10px 0;
+  border: 0px;
+  box-sizing: border-box;
+}
+
+select{
+  width: 100%;
+  padding: 7px;
+  margin-bottom: 1rem;
+  background-color:white;;
+  border-radius: 3px;
+  margin:10px 0;
+  border: 0px;
+  box-sizing: border-box;
+  font-size: 17px;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  background-color:#0d4c6a;
+  transition: background-color 0.3s, color 0.3s;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color:#3883a5;
+}
+
+/* Стилизация полосы прокрутки */
+::-webkit-scrollbar {
+  width: 5px;
+  /* ширина вертикальной полосы прокрутки */
+  height: 5px;
+  
+  /* высота горизонтальной полосы прокрутки */
+}
+
+/* Стилизация дорожки прокрутки */
+::-webkit-scrollbar-track {
+  background-color: #95c6d4;
+  /* цвет фона дорожки прокрутки */
+  margin: 5px;
+
+}
+
+/* Стилизация ползунка прокрутки */
+::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  margin: 5px;
+  /* цвет фона ползунка прокрутки */
+  border: 1px solid #0d4c6a;
+  border-radius: 1px;
+}
+
+/* Стилизация ползунка прокрутки при наведении */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+  /* цвет фона ползунка прокрутки при наведении */
+}

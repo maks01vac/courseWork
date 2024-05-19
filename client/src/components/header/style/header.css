@@ -6,6 +6,7 @@
   background-color: #ffffff;
   /* Цвет фона */  
   border-bottom: 1px solid rgb(179, 179, 179);
+  box-sizing: border-box;
 }
 
 .header-content {
@@ -60,6 +61,8 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+  font-size: 18px;
+  text-decoration: none;
 }
 
 .nav-button:hover {
