@@ -27,6 +27,7 @@ const GraphDataForm = () => {
 
   const [showMdotKgPerSForSinks, setShowMdotKgPerSForSinks] = useState(false);
   const [showScalingForSinks, setShowScalingForSinks] = useState(false);
+  const [showPumpMassFlowAndPressure, setShowPumpMassFlowAndPressure] = useState(false);
 
   const [error, setError] = useState('');
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -226,14 +227,26 @@ const GraphDataForm = () => {
 
         {pipeModelInfo.components?.pumps?.length > 0 ? (
           <>
+            
             <h3>Насосы</h3>
             <div className={styles.form_section}>
+            <div className={styles.checkbox}>
+              <div>
+                <input
+                  type="checkbox"
+                  onChange={() => {
+                    resetField(showPumpMassFlowAndPressure, setShowPumpMassFlowAndPressure, "pumps", "mdot_flow_kg_per_s")
+                    resetField(showPumpMassFlowAndPressure, setShowPumpMassFlowAndPressure, "pumps", "p_flow_bar")
+                  }}
+                />Задать массовый поток и подъем давления вручную</div>
+            </div>
               {pipeModelInfo.components.pumps.map((pump, index) => (
                 <PumpForm
                   key={index}
                   index={index}
                   pump={pump}
-                  handleComponentChange={handleComponentChange} />
+                  handleComponentChange={handleComponentChange}
+                  showPumpMassFlowAndPressure={showPumpMassFlowAndPressure} />
               ))}
             </div>
           </>

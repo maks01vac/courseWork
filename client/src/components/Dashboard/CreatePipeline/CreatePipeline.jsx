@@ -31,8 +31,6 @@ const CreatePipeline = () => {
     const navigate = useNavigate()
     const { userId } = useAuth();
 
-    useEffect(()=>{console.log(pipeModelInfo)},[pipeModelInfo])
-
     const elements = [
         { id: 'junction', name: 'узел', icon: junctionIcon, activeIcon:junctionIconActive },
         { id: 'pump', name: 'Насос', icon: pumpIcon, activeIcon:pumpIconActive },

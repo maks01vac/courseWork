@@ -53,61 +53,6 @@ const RenderResult = () => {
                                     </div>
                                 ))}
                             </div>
-                            <div className='result-component-box'>
-                                <h3>Внешние сети</h3>
-                                {result.components.ext_grids.map((ext_grid) => (
-                                    <div key={Number(ext_grid.id)} className='result-component-elem-box'>
-                                        <h4>{ext_grid.name}:</h4>
-                                        <ul>
-                                            <li>Массовый поток: {ext_grid.results.mdot_kg_per_s} кг/с</li>
-                                        </ul>
-
-                                    </div>
-                                ))}
-                            </div>
-                            {result.components.pumps.length > 0 && (
-                                <div className='result-component-box'>
-                                    <h3>Насосы</h3>
-                                    {result.components.pumps.map((pump) => (
-                                        <div key={Number(pump.id)} className='result-component-elem-box'>
-                                            <h4>{pump.name}</h4>
-                                            <ul>
-                                                <li>Подъём давления: {pump.results.pressure_lift} бар</li>
-                                            </ul>
-                                        </div>
-
-
-                                    ))}
-                                </div>
-                            )}
-                            {result.components.sources.length != 0 ? (
-                                <div className='result-component-box'>
-                                    <h3>Источники</h3>
-                                    {result.components.sources.map((source) => (
-                                        <div key={Number(source.id)} className='result-component-elem-box'>
-                                            <h4>{source.name}:</h4>
-                                            <ul>
-                                                <li>Массовый поток: {source.results.mass_flow} кг/с</li>
-                                            </ul>
-
-                                        </div>
-                                    ))}
-                                </div>) : (<></>)}
-
-                            {result.components.sinks.length != 0 ? (
-                                <div className='result-component-box'>
-                                    <h3>Стоки</h3>
-                                    {result.components.sinks.map((sink) => (
-                                        <div key={Number(sink.id)} className='result-component-elem-box'>
-                                            <h4>{sink.name}:</h4>
-                                            <ul>
-                                            <li>Массовый поток: {sink.results.mass_flow} кг/с</li>
-                                            </ul>
-                                            
-                                        </div>
-                                    ))}
-                                </div>) : (<></>)}
-
                         </div>
                     );
                 })}

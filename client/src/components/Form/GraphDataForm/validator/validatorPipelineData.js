@@ -135,8 +135,6 @@ validator.validatePipelineComponents = (pipeline) => {
 validator.validateFormValue = (data) => {
   const errors = [];
 
-  console.log(data)
-
   data.components.pipes.forEach(pipe => {
     if (!pipe.length != '' || !pipe.diameter.length) {
       errors.push(`Заполните данные для: Труба (${pipe.startName} - ${pipe.endName})`);

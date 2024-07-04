@@ -69,13 +69,12 @@ import externalGridIcons from '../../Dashboard/Icons/external_grid_icon.png';
     {
       selector: 'edge',
       style: {
-        'width': 3,
-        'line-color': 'black',
-        'target-arrow-color': 'black',
+        'width': 5,
+        'line-color': '#0d4c6a',
+        'target-arrow-color': '#0d4c6a',
         'target-arrow-shape': 'triangle',
         'curve-style': 'unbundled-bezier',
-        'control-point-distances': [15, -15],
-        'control-point-weights': [0.2, 0.8],
+        'control-point-distances': [0, 0],
       },
     },
   ]

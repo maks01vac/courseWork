@@ -44,7 +44,7 @@ function transformPipeModelInfo(pipeModelInfo) {
                 break;
             case 'pump':
                 pipelineData.components.pumps.push(
-                    getExistingOrNew(oldPumps, id, { ...baseComponent, start_junction: '', end_junction: '', type:'P1' })
+                    getExistingOrNew(oldPumps, id, { ...baseComponent, start_junction: '', end_junction: '', type:'P1', mdot_flow_kg_per_s:'', p_flow_bar:''  })
                 );
                 break;
             case 'source':
